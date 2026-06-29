@@ -16,8 +16,6 @@ jobs:
           - product-service
           - order-service
           - payment-service
-          - gateway
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
