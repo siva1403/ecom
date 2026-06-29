@@ -13,6 +13,10 @@ jobs:
       matrix:
         service:
           - user-service
+          - order-service
+          - product-service
+          - payment-service
+          - gateway
 
     steps:
       # 1. Checkout code
