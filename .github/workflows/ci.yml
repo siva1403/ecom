@@ -16,6 +16,7 @@ jobs:
           - product-service
           - order-service
           - payment-service
+          - gateway
 
     steps:
       - name: Checkout
