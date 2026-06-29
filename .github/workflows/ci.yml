@@ -27,7 +27,7 @@ jobs:
 
       # 3. Install dependencies (FIXED)
       - name: Install Dependencies
-        working-directory: services/${{ matrix.service }}
+        working-directory: ${{ matrix.service }}
         run: |
           if [ -f requirements.txt ]; then
             pip install -r requirements.txt
