@@ -16,7 +16,6 @@ jobs:
           - product-service
           - order-service
           - payment-service
-          - notification-service
 
     steps:
       - name: Checkout
