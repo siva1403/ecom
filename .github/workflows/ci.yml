@@ -27,7 +27,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install -r services/${{ matrix.service }}/requirements.txt
+          pip install  services/${{ matrix.service }}/requirements.txt
 
       - name: Build Docker Image
         run: |
