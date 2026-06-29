@@ -2,46 +2,30 @@ name: Build and Push Microservices
 
 on:
   push:
-    branches: [ "master", "main" ]
+    branches: [ "main", "master" ]
 
 jobs:
-  set-matrix:
-    runs-on: ubuntu-latest
-    outputs:
-      services: ${{ steps.set.outputs.services }}
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Generate service list
-        id: set
-        run: |
-          services=$(ls services | jq -R -s -c 'split("\n")[:-1]')
-          echo "services=$services" >> $GITHUB_OUTPUT
-
   build:
-    needs: set-matrix
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        service: ${{ fromJson(needs.set-matrix.outputs.services) }}
+        service:
+          - user-service
+          - product-service
+          - order-service
+          - payment-service
+          - gateway
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Show service
-        run: echo "Building ${{ matrix.service }}"
 
       - name: Install Dependencies
         working-directory: services/${{ matrix.service }}
         run: |
           if [ -f requirements.txt ]; then
             pip install -r requirements.txt
-          else
-            echo "No requirements.txt found"
           fi
 
       - name: Login to Docker Hub
